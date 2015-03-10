@@ -1,0 +1,30 @@
+{
+  "name": "democracyos-db",
+  "version": "0.0.1",
+  "description": "MongoDB connection wrapper",
+  "main": "index.js",
+  "scripts": { },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DemocracyOS/democracyos-db.git"
+  },
+  "dependencies": {
+    "debug": "^2.1.1",
+    "mongoose": "3.8.24",
+    "muri": "1.0.0"
+  },
+  "keywords": [
+    "mongodb",
+    "democracyos",
+    "democracy",
+    "mongo",
+    "db",
+    "connect"
+  ],
+  "author": "Guido Vilariño",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DemocracyOS/democracyos-db/issues"
+  },
+  "homepage": "https://github.com/DemocracyOS/democracyos-db"
+}
