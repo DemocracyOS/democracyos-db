@@ -3,15 +3,15 @@
   "version": "0.0.1",
   "description": "MongoDB connection wrapper",
   "main": "index.js",
-  "scripts": { },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "https://github.com/DemocracyOS/democracyos-db.git"
   },
   "dependencies": {
     "debug": "^2.1.1",
-    "mongoose": "3.8.24",
-    "muri": "1.0.0"
+    "muri": "1.0.0",
+    "semver": "^4.3.1"
   },
   "keywords": [
     "mongodb",
