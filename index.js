@@ -1,27 +1,35 @@
-var mongoose = require('mongoose');
+var semver = require('semver');
 var muri = require('muri');
 var rgxReplSet = /^.+,.+$/;
 var log = require('debug')('democracyos:db');
 
-exports.getDefaultConnection = function getDefaultConnection () {
-  return mongoose.connection;
-}
+var ALLOWED_MONGOOSE_VERSION = '3.8.24';
 
-exports.createConnection = function createConnection (mongoUri) {
-  return performConnection(mongoose.createConnection(), buildOpts(muri(mongoUri)));
-}
+function Db(mongoose) {
+  if (!(this instanceof Db)) return new Db(mongoose);
 
-exports.connect = function connect (mongoUri) {
-  return performConnection(mongoose.connection, buildOpts(muri(mongoUri)));;
-}
-
-
-function performConnection (connection, opts) {
-
-  if (/mongoose|^\*$/.test(process.env.DEBUG)) {
-    mongoose.set('debug', true);
+  if (!semver.satisfies(mongoose.version, ALLOWED_MONGOOSE_VERSION)) {
+    throw new Error('democracyos-db only accepts "' + ALLOWED_MONGOOSE_VERSION + '" version of "mongoose".');
   }
 
+  this.mongoose = mongoose;
+}
+
+module.exports = Db;
+
+Db.prototype.getDefaultConnection = function getDefaultConnection (){
+  return this.mongoose.connection;
+}
+
+Db.prototype.createConnection = function createConnection (mongoUri){
+  return performConnection(this.mongoose, this.mongoose.createConnection(), buildOpts(muri(mongoUri)));
+}
+
+Db.prototype.connect = function connect (mongoUri) {
+  return performConnection(this.mongoose, this.mongoose.connection, buildOpts(muri(mongoUri)));;
+}
+
+function performConnection (mongoose, connection, opts) {
   var dbOptions = {
     db: {
       journal: true,
