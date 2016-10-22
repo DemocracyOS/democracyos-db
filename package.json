@@ -1,6 +1,6 @@
 {
   "name": "democracyos-db",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "MongoDB connection wrapper",
   "main": "index.js",
   "scripts": { },
@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "debug": "^2.1.1",
-    "mongoose": "3.8.24",
+    "mongoose": "3.8.40",
     "muri": "1.0.0"
   },
   "keywords": [
